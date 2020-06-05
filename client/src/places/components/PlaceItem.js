@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import Card from "../../shared/components/UIElements/Card";
-import Button from "../../shared/components/FormElements/Button";
-import Modal from "../../shared/components/UIElements/Modal";
-import "./PlaceItem.css";
+import Card from '../../shared/components/UIElements/Card';
+import Button from '../../shared/components/FormElements/Button';
+import Modal from '../../shared/components/UIElements/Modal';
+import Map from '../../shared/components/UIElements/Map';
+import './PlaceItem.css';
 
-const PlaceItem = (props) => {
+const PlaceItem = props => {
   const [showMap, setShowMap] = useState(false);
 
   const openMapHandler = () => setShowMap(true);
+
   const closeMapHandler = () => setShowMap(false);
 
   return (
@@ -22,11 +24,11 @@ const PlaceItem = (props) => {
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
       >
         <div className="map-container">
-          <h2>MAP</h2>
+          <Map center={props.coordinates} zoom={16} />
         </div>
       </Modal>
       <li className="place-item">
-        <Card clasName="place-item__content">
+        <Card className="place-item__content">
           <div className="place-item__image">
             <img src={props.image} alt={props.title} />
           </div>
@@ -35,10 +37,8 @@ const PlaceItem = (props) => {
             <h3>{props.address}</h3>
             <p>{props.description}</p>
           </div>
-          <div className="place-item__action">
-            <Button inverse onClick={openMapHandler}>
-              VIEW ON MAP
-            </Button>
+          <div className="place-item__actions">
+            <Button inverse onClick={openMapHandler}>VIEW ON MAP</Button>
             <Button to={`/places/${props.id}`}>EDIT</Button>
             <Button danger>DELETE</Button>
           </div>
