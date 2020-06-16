@@ -27,7 +27,7 @@ const getPlaceById = (req, res, next) => {
     throw new HttpError("Could not find a place for the provided id.", 404);
   }
 
-  res.json({ place }); // => { place } = { place : place }
+  res.json({ places }); // => { place } = { place : place }
 };
 
 const getPlacesByUserId = (req, res, next) => {
@@ -43,7 +43,7 @@ const getPlacesByUserId = (req, res, next) => {
     );
   }
 
-  res.json({ place });
+  res.json({ places });
 };
 
 const createPlace = (req, res, next) => {
