@@ -47,7 +47,7 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  .connect("MONGOURI")
+  .connect("")
   .then(() => {
     app.listen(5000);
   })
