@@ -6,11 +6,11 @@ import {
   Switch,
 } from "react-router-dom";
 
-import Auth from "./user/pages/Auth";
 import Users from "./user/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
 import UserPlaces from "./places/pages/UserPlaces";
 import UpdatePlace from "./places/pages/UpdatePlace";
+import Auth from "./user/pages/Auth";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import { AuthContext } from "./shared/context/auth-context";
 
@@ -18,26 +18,28 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState(false);
 
-  const login = useCallback(() => {
+  const login = useCallback((uid) => {
     setIsLoggedIn(true);
-    setUserId(uuid);
+    setUserId(uid);
   }, []);
+
   const logout = useCallback(() => {
-    setIsLoggedIn(true);
+    setIsLoggedIn(false);
     setUserId(null);
   }, []);
 
   let routes;
+
   if (isLoggedIn) {
     routes = (
       <Switch>
         <Route path="/" exact>
           <Users />
         </Route>
-        <Route path="/:userId/places">
+        <Route path="/:userId/places" exact>
           <UserPlaces />
         </Route>
-        <Route path="/places/new">
+        <Route path="/places/new" exact>
           <NewPlace />
         </Route>
         <Route path="/places/:placeId">
@@ -52,7 +54,7 @@ const App = () => {
         <Route path="/" exact>
           <Users />
         </Route>
-        <Route path="/:userId/places">
+        <Route path="/:userId/places" exact>
           <UserPlaces />
         </Route>
         <Route path="/auth">
