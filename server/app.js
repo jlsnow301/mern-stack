@@ -54,6 +54,8 @@ mongoose
   .connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: true,
   })
   .then(() => {
     app.listen(5000);
