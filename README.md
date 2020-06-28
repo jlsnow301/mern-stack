@@ -1,2 +1,3 @@
-# Mern Stack Demo
-This is a demo of the MERN stack, WIP.
+# Mern Stack Examples
+A web application built demonstrating the MERN stack.
+Source: Academind
