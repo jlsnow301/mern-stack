@@ -9,6 +9,10 @@ const placesRoutes = require("./routes/places-routes");
 const usersRoutes = require("./routes/users-routes");
 const HttpError = require("./models/http-error");
 
+const mongoURI = require("./keys").mongoURI;
+
+console.log(process.env.MONGO_KEY);
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -47,7 +51,10 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  .connect("")
+  .connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     app.listen(5000);
   })
